@@ -27,13 +27,13 @@ public class Voyage extends BaseModel {
     @Column("date_heure_arrive")
     private LocalDateTime dateHeureArrive;
 
-    private Integer prix;
+    private Double prix;
 
     @Column("siege_reserver")
     private Integer siegeReserver;
 
     public Voyage() {
-        this.prix = 0;
+        this.prix = 0.0;
         this.siegeReserver = 0;
     }
 
@@ -42,7 +42,7 @@ public class Voyage extends BaseModel {
             String lieuArrive,
             LocalDateTime dateHeureDepart,
             LocalDateTime dateHeureArrive,
-            Integer prix,
+            Double prix,
             Integer siegeReserver
     ) {
         this.lieuDepart = lieuDepart;
@@ -100,11 +100,11 @@ public class Voyage extends BaseModel {
         this.dateHeureArrive = dateHeureArrive;
     }
 
-    public Integer getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix(Integer prix) {
+    public void setPrix(Double prix) {
         this.prix = prix;
     }
 
