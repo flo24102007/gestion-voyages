@@ -4,8 +4,10 @@
  */
 package mvc_bateau.dao;
 
-
-
+/**
+ *
+ * @author flo
+ */
 public class PassagerDAO {
     
 }
