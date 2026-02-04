@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontendprojet;
+package mvc_bateau.view;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,15 +29,15 @@ private void customComponents() {
         tbListeVoyages.setRowHeight(40);
         
         // Masquer la colonne ID (colonne 0)
-        tbListeVoyages.getColumnModel().getColumn(0).setPreferredWidth(0);
+        /*tbListeVoyages.getColumnModel().getColumn(0).setPreferredWidth(0);
         tbListeVoyages.getColumnModel().getColumn(0).setMinWidth(0);
-        tbListeVoyages.getColumnModel().getColumn(0).setMaxWidth(0);
+        tbListeVoyages.getColumnModel().getColumn(0).setMaxWidth(0);*/
         
         // Dernière colonne = Actions (avec les 2 boutons)
-        int actionsColumnIndex = tbListeVoyages.getColumnCount() - 1;
-        tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellRenderer(new ButtonRenderer());
-        tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellEditor(new ButtonEditor(tbListeVoyages));
-        tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setPreferredWidth(200); // Plus large pour 2 boutons
+       // int actionsColumnIndex = tbListeVoyages.getColumnCount() - 1;
+       // tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellRenderer(new ButtonRenderer());
+        //tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellEditor(new ButtonEditor(tbListeVoyages));
+        //tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setPreferredWidth(200); // Plus large pour 2 boutons
         
         // Configurer la police
         Font font = new Font("Comic Sans MS", Font.BOLD, 16);

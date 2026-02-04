@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mvc_bateau.infra.view;
+package mvc_bateau.view;
 
 /**
  *
  * @author patrricia
  */
-public class Login extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public LoginView() {
         initComponents();
     }
 
@@ -147,7 +147,7 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new LoginView().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mvc_bateau.infra.view;
+package mvc_bateau.view;
 
 /**
  *
  * @author patrricia
  */
-public class Page_First extends javax.swing.JFrame {
+public class Page_FirstView extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Page_First.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Page_FirstView.class.getName());
 
     /**
      * Creates new form Page_First
      */
-    public Page_First() {
+    public Page_FirstView() {
         initComponents();
     }
 
@@ -55,10 +55,7 @@ public class Page_First extends javax.swing.JFrame {
         label1.setForeground(new java.awt.Color(51, 0, 153));
         label1.setText("GESTION VOYAGES MARITIMES"); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/patrricia/Documents/Memorable Cruise Quotes Sayings_ Words to Sail By.jpeg")); // NOI18N
-
         jButton1.setBackground(new java.awt.Color(51, 0, 102));
-        jButton1.setActionCommand("");
 
         jButton3.setForeground(new java.awt.Color(174, 102, 209));
         jButton3.setText("GERER BATEAUX"); // NOI18N
@@ -159,7 +156,7 @@ public class Page_First extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Page_First().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Page_FirstView().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
