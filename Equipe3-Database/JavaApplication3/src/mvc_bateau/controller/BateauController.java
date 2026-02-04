@@ -4,7 +4,6 @@
  */
 package mvc_bateau.controller;
 
-<<<<<<< HEAD
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,18 +18,13 @@ import mvc_bateau.infra.view.ButtonRenderer;
 import mvc_bateau.model.Bateau;
 import mvc_bateau.view.BateauView;
 import mvc_bateau.view.FicheBateauView;
-public class PassagerController {
-	private final List<passager> model;
-    private final passagerView view;
-    private final passagerDAO dao;
+
+public class BateauController {
+    private final List<Bateau> model;
+    private final BateauView view;
+    private final BateauDAO dao;
    
-    /**
-     *
-     * @param m
-     * @param v
-     * @param d
-     */
-    public PassagerController(List<passager> m, passagerView v, passagerDAO d){
+    public BateauController(List<Bateau> m, BateauView v, BateauDAO d){
        model = m;
        view = v;
        dao = d;
@@ -52,11 +46,11 @@ public class PassagerController {
     /**
      * Actualiser une table à partir d'un objet model
      */
-    private void refreshTable(List<passager> model) {
+    private void refreshTable(List<Bateau> model) {
         SwingUtilities.invokeLater(() -> {
-            DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassagerx().getModel();
+            DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeBateaux().getModel();
             tableModel.setRowCount(0);
-            for(passager b : model) {
+            for(Bateau b : model) {
                 tableModel.addRow(b.toTableRow());
             }
         });
@@ -65,20 +59,20 @@ public class PassagerController {
     public void initController(){
         // Events Boutons "Actions"
         ActionListener editActionListener = (e) -> {
-            int selectedRow = view.getTbListepassagerx().getSelectedRow();
+            int selectedRow = view.getTbListeBateaux().getSelectedRow();
             modifier(selectedRow);
         };
         ActionListener deleteActionListener = (e) -> {
-            int selectedRow = view.getTbListepassagerx().getSelectedRow();
-            if(JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view, "Voulez-vous vraiment supprimer ce passager ?")) {
+            int selectedRow = view.getTbListeBateaux().getSelectedRow();
+            if(JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view, "Voulez-vous vraiment supprimer ce bateau ?")) {
                 supprimer(selectedRow);
             }
         };
         // Boutons "Actions"
-        ButtonRenderer btnRend = (ButtonRenderer) view.getTbListepassagerx().getColumn("Actions").getCellRenderer();
+        ButtonRenderer btnRend = (ButtonRenderer) view.getTbListeBateaux().getColumn("Actions").getCellRenderer();
         btnRend.setEditActionListener(editActionListener);
         btnRend.setDeleteActionListener(deleteActionListener);
-        ButtonEditor btnEditor = (ButtonEditor) view.getTbListepassagerx().getColumn("Actions").getCellEditor();
+        ButtonEditor btnEditor = (ButtonEditor) view.getTbListeBateaux().getColumn("Actions").getCellEditor();
         btnEditor.setEditActionListener(editActionListener);
         btnEditor.setDeleteActionListener(deleteActionListener);
        // Bouton Nouveau
@@ -90,10 +84,10 @@ public class PassagerController {
      */
     private void modifier(int tableRow) {
         // Récupération de l'ID
-        Long id = (Long) view.getTbListepassagerx().getValueAt(tableRow, 0);
+        Long id = (Long) view.getTbListeBateaux().getValueAt(tableRow, 0);
         // Afficher la vue en modale
-        FichepassagerView editView = new FichepassagerView();
-        FichepassagerController controller = new FichepassagerController(
+        FicheBateauView editView = new FicheBateauView();
+        FicheBateauController controller = new FicheBateauController(
                 dao.selectById(id), 
                 editView, 
                 dao, 
@@ -101,9 +95,9 @@ public class PassagerController {
                 (e)-> {
                     // Au succès de la modification -> actualiser la ligne
                     SwingUtilities.invokeLater(() -> {
-                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassagerx().getModel();
+                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeBateaux().getModel();
                         int i = 0;
-                        for(Object obj : ((FichepassagerController) e.getSource()).getModel().toTableRow()) {
+                        for(Object obj : ((FicheBateauController) e.getSource()).getModel().toTableRow()) {
                             tableModel.setValueAt(obj, tableRow, i++);
                         }
                     });
@@ -117,49 +111,49 @@ public class PassagerController {
      */
     private void supprimer(int tableRow) {
         // Récupération de l'ID
-        Long id = (Long) view.getTbListepassagerx().getValueAt(tableRow, 0);
-        String modelTitle = (String) view.getTbListepassagerx().getValueAt(tableRow, 1);
-        // Suppression DAO
-        dao.delete(id);
-        // Messages
-        JOptionPane.showMessageDialog(
-                view,
-                "Suppression du passager "+ modelTitle + " effectuée avec succès");
-        // Retirer la ligne de la table
-        SwingUtilities.invokeLater(() -> {
-            ((DefaultTableModel) view.getTbListepassagerx().getModel()).removeRow(tableRow);
-        });
+        Long id = (Long) view.getTbListeBateaux().getValueAt(tableRow, 0);
+        String modelTitle = (String) view.getTbListeBateaux().getValueAt(tableRow, 1);
+        try {
+            // Suppression DAO
+            dao.delete(id);
+            // Messages
+            JOptionPane.showMessageDialog(
+                    view, 
+                    "Suppression du bateau "+ modelTitle + " effectuée avec succès");
+            // Retirer la ligne de la table
+            SwingUtilities.invokeLater(() -> {
+               ((DefaultTableModel) view.getTbListeBateaux().getModel()).removeRow(tableRow); 
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(BateauController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    view, 
+                    "Erreur lors de la suppression du bateau : "+modelTitle, 
+                    "Erreur", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
    
     /**
      * Nouvel enregistrement
      */
     private void nouveau() {
-        FichepassagerView newView = new FichepassagerView();
-        FichepassagerController controller = new FichepassagerController(
-                new passager(), 
+        FicheBateauView newView = new FicheBateauView();
+        FicheBateauController controller = new FicheBateauController(
+                new Bateau(), 
                 newView, 
                 dao, 
                 Boolean.TRUE, // Création
                 (e)-> {
                     // Au succès de l'enregistrement -> ajout à la table
                     SwingUtilities.invokeLater(() -> {
-                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassagerx().getModel();
-                        tableModel.addRow(((FichepassagerController) e.getSource()).getModel().toTableRow());
+                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeBateaux().getModel();
+                        tableModel.addRow(((FicheBateauController) e.getSource()).getModel().toTableRow());
                     });
                 });
         controller.initController();
         newView.setVisible(true);
     }
     
-    
 }
-=======
-/**
- *
- * @author flo
- */
-public class PassagerController {
-    
-}
->>>>>>> 6fba4fbfd676c39800028d8a56fc8d5fd909fe4f
+
