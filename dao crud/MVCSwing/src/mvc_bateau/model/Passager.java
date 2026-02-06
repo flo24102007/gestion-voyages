@@ -14,21 +14,21 @@ import mvc_bateau.infra.dao.Column;
 public class Passager extends BaseModel {
     private String nom;
 
+    
+
+    private String prenoms ;
     private String email;
 
-    private Integer numero;
-
-    @Column("id_bateau")
-    private Integer idBateau;
+   
 
     public Passager() {
     }
 
-    public Passager(String nom, String email, Integer numero, Integer idBateau) {
+    public Passager(String nom, String prenoms, String email ) {
         this.nom = nom;
+        this.prenoms=prenoms;
         this.email = email;
-        this.numero = numero;
-        this.idBateau = idBateau;
+        
     }
 
     @Override
@@ -36,9 +36,9 @@ public class Passager extends BaseModel {
         return new Object[]{
             id,
             nom,
+            prenoms,
             email,
-            numero,
-            idBateau
+            
         };
     }
 
@@ -47,9 +47,16 @@ public class Passager extends BaseModel {
     public String getNom() {
         return nom;
     }
+    public String getPrenoms() {
+        return prenoms;
+    }
+    
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    public void setPrenoms(String prenoms) {
+        this.prenoms= prenoms;
     }
 
     public String getEmail() {
@@ -60,21 +67,7 @@ public class Passager extends BaseModel {
         this.email = email;
     }
 
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public Integer getIdBateau() {
-        return idBateau;
-    }
-
-    public void setIdBateau(Integer idBateau) {
-        this.idBateau = idBateau;
-    }
+    
 
     // ===== equals / hashCode =====
 
@@ -95,9 +88,10 @@ public class Passager extends BaseModel {
     public String toString() {
         return "Passager{" +
                 "nom=" + nom +
+                ", prenoms=" + prenoms +
                 ", email=" + email +
-                ", numero=" + numero +
-                ", idBateau=" + idBateau +
+                
+                
                 '}';
     }
     
