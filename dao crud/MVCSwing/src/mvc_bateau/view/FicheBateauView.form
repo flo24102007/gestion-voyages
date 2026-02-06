@@ -25,41 +25,35 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btEnregistrer" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel7" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" pref="21" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel5" min="-2" pref="228" max="-2" attributes="0"/>
-                                  <Component id="tfNumSiegeBateau" alignment="0" pref="571" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel4" min="-2" pref="106" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel6" min="-2" pref="21" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="tfDescBateau" alignment="0" pref="571" max="32767" attributes="0"/>
-                                  <Component id="tfNomBateau" max="32767" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                  <Component id="spCapacite" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btEnregistrer" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel7" min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel5" min="-2" pref="228" max="-2" attributes="0"/>
+                          <Component id="tfNumSiegeBateau" alignment="0" pref="571" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="tfDescBateau" alignment="0" pref="571" max="32767" attributes="0"/>
+                          <Component id="tfNomBateau" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                          <Component id="spCapacite" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="580" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
@@ -68,7 +62,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" pref="21" max="-2" attributes="0"/>
-                  <EmptySpace pref="333" max="32767" attributes="0"/>
+                  <EmptySpace pref="326" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -100,22 +94,20 @@
               <Component id="spCapacite" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="btEnregistrer" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="72" max="-2" attributes="0"/>
-                  <EmptySpace pref="648" max="32767" attributes="0"/>
+                  <EmptySpace pref="624" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="359" max="32767" attributes="0"/>
+                  <EmptySpace pref="335" max="32767" attributes="0"/>
                   <Component id="jLabel9" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="340" max="-2" attributes="0"/>
               </Group>
@@ -124,18 +116,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="0" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Comic Sans MS" size="18" style="1"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Copyright (c) KOUASSI 2025"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

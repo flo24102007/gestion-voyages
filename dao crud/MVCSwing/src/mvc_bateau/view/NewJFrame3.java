@@ -37,14 +37,10 @@ public class NewJFrame3 extends javax.swing.JFrame {
         espaceRechercher = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         nomFenètre = new javax.swing.JLabel();
-        btnajouterPassager = new javax.swing.JButton();
         listePassagerSroll = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jSpinner2 = new javax.swing.JSpinner();
         GébereTicket = new javax.swing.JButton();
-        btnRechercher = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -55,32 +51,23 @@ public class NewJFrame3 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         nomFenètre.setBackground(new java.awt.Color(255, 51, 255));
-        nomFenètre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        nomFenètre.setForeground(new java.awt.Color(102, 102, 255));
+        nomFenètre.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        nomFenètre.setForeground(new java.awt.Color(0, 102, 153));
         nomFenètre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomFenètre.setText("LISTE DES PASSAGERS");
-
-        btnajouterPassager.setBackground(new java.awt.Color(0, 153, 153));
-        btnajouterPassager.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnajouterPassager.setText("AJOUTER  PASSAGER");
-        btnajouterPassager.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnajouterPassagerActionPerformed(evt);
-            }
-        });
 
         listePassagerSroll.setBorder(null);
 
         jTable1.setForeground(new java.awt.Color(153, 0, 153));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nom", "Prénoms", "E-mail", "Téléphone", "Voyage", "Action"
+                "Id", "Nom", "Prénoms", "E-mail", "Action"
             }
         ));
         listePassagerSroll.setViewportView(jTable1);
@@ -94,60 +81,33 @@ public class NewJFrame3 extends javax.swing.JFrame {
             }
         });
 
-        btnRechercher.setBackground(new java.awt.Color(102, 102, 255));
-        btnRechercher.setText("Rechercher");
-        btnRechercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRechercherActionPerformed(evt);
-            }
-        });
-
-        jScrollPane1.setViewportView(jTextPane1);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(nomFenètre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 297, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(listePassagerSroll)
+                .addComponent(listePassagerSroll, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnajouterPassager)
-                .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(GébereTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(nomFenètre, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(15, 15, 15)
                 .addComponent(nomFenètre)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(listePassagerSroll, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                        .addGap(26, 26, 26))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnajouterPassager, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(42, 42, 42)
+                .addComponent(listePassagerSroll, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(GébereTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,25 +122,16 @@ public class NewJFrame3 extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnajouterPassagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnajouterPassagerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnajouterPassagerActionPerformed
-
     private void GébereTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GébereTicketActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GébereTicketActionPerformed
-
-    private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRechercherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,15 +160,11 @@ public class NewJFrame3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton GébereTicket;
-    private javax.swing.JButton btnRechercher;
-    private javax.swing.JButton btnajouterPassager;
     private javax.swing.JLabel espaceRechercher;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JScrollPane listePassagerSroll;

@@ -48,9 +48,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="109" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,54 +66,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
-                  <Component id="nomFenètre" min="-2" pref="205" max="-2" attributes="0"/>
-                  <EmptySpace min="114" pref="297" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="listePassagerSroll" max="32767" attributes="0"/>
+                  <Component id="listePassagerSroll" pref="764" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnRechercher" min="-2" pref="99" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnajouterPassager" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="GébereTicket" min="-2" pref="135" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+                  <Component id="nomFenètre" min="-2" pref="264" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="nomFenètre" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnRechercher" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="listePassagerSroll" pref="235" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnajouterPassager" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="listePassagerSroll" min="-2" pref="313" max="-2" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
                   <Component id="GébereTicket" min="-2" pref="37" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,28 +103,14 @@
               <Color blue="ff" green="33" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="18" style="0"/>
+              <Font name="Segoe UI Semibold" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
+              <Color blue="99" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="LISTE DES PASSAGERS"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnajouterPassager">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="AJOUTER  PASSAGER"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnajouterPassagerActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="listePassagerSroll">
           <Properties>
@@ -164,13 +127,11 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="4">
+                  <Table columnCount="5" rowCount="4">
                     <Column editable="true" title="Id" type="java.lang.Object"/>
                     <Column editable="true" title="Nom" type="java.lang.Object"/>
                     <Column editable="true" title="Pr&#xe9;noms" type="java.lang.Object"/>
                     <Column editable="true" title="E-mail" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#xe9;l&#xe9;phone" type="java.lang.Object"/>
-                    <Column editable="true" title="Voyage" type="java.lang.Object"/>
                     <Column editable="true" title="Action" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -194,28 +155,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="G&#xe9;bereTicketActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRechercher">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="66" red="66" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Rechercher"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRechercherActionPerformed"/>
-          </Events>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextPane" name="jTextPane1">
-            </Component>
-          </SubComponents>
-        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
