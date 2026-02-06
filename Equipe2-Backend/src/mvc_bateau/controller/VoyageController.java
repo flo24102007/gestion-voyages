@@ -5,12 +5,19 @@
 package mvc_bateau.controller;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import mvc_bateau.dao.VoyageDAO;
 import mvc_bateau.infra.view.ButtonEditor;
 import mvc_bateau.infra.view.ButtonRenderer;
+import mvc_bateau.model.Voyage;
+import mvc_bateau.view.FicheVoyageView;
+import mvc_bateau.view.VoyageView;
 
 class VoyageController {
 
@@ -53,13 +60,18 @@ class VoyageController {
     public void initController() {
         // Events Boutons "Actions"
         ActionListener editActionListener = (e) -> {
-            int selectedRow = view.getTbListeVoyagesx().getSelectedRow();
+            int selectedRow = view.getTbListeVoyages().getSelectedRow();
             modifier(selectedRow);
         };
         ActionListener deleteActionListener = (e) -> {
             int selectedRow = view.getTbListeVoyages().getSelectedRow();
             if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view, "Voulez-vous vraiment supprimer ce Voyage ?")) {
-                supprimer(selectedRow);
+                // a revoir cette partie
+                try {
+                    supprimer(selectedRow);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VoyageController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         // Boutons "Actions"
@@ -70,7 +82,7 @@ class VoyageController {
         btnEditor.setEditActionListener(editActionListener);
         btnEditor.setDeleteActionListener(deleteActionListener);
         // Bouton Nouveau
-        view.getBtNouveau().addActionListener(e -> nouveau());
+        view.getNouveau().addActionListener(e -> nouveau());
     }
 
     /**
@@ -103,10 +115,10 @@ class VoyageController {
     /**
      * Supprimer une ligne de la table
      */
-    private void supprimer(int tableRow) {
+    private void supprimer(int tableRow) throws SQLException {
         // Récupération de l'ID
         Long id = (Long) view.getTbListeVoyages().getValueAt(tableRow, 0);
-        String modelTitle = (String) view.getTbListeVoyage().getValueAt(tableRow, 1);
+        String modelTitle = (String) view.getTbListeVoyages().getValueAt(tableRow, 1);
         // Suppression DAO
         dao.delete(id);
         // Messages
@@ -115,7 +127,7 @@ class VoyageController {
                 "Suppression du Voyage " + modelTitle + " effectuée avec succès");
         // Retirer la ligne de la table
         SwingUtilities.invokeLater(() -> {
-            ((DefaultTableModel) view.getTbListeVoyage().getModel()).removeRow(tableRow);
+            ((DefaultTableModel) view.getTbListeVoyages().getModel()).removeRow(tableRow);
         });
     }
 
@@ -132,7 +144,7 @@ class VoyageController {
                 (e) -> {
                     // Au succès de l'enregistrement -> ajout à la table
                     SwingUtilities.invokeLater(() -> {
-                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeVoyage().getModel();
+                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeVoyages().getModel();
                         tableModel.addRow(((FicheVoyageController) e.getSource()).getModel().toTableRow());
                     });
                 });

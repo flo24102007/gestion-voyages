@@ -15,6 +15,11 @@
 	import mvc_bateau.dao.VoyageDAO;
 	import mvc_bateau.model.Voyage;
 	import mvc_bateau.view.FicheVoyageView;
+                    import java.time.format.DateTimeFormatter;
+                    import javax.swing.JSpinner;
+                    import java.util.Date;
+                    import java.time.LocalDateTime;
+                    import java.time.ZoneId;
 
 	public class FicheVoyageController {
 	   private final Voyage model;
@@ -31,23 +36,37 @@
 	       this.onSucess = onSucess;
 	       initView();
 	   }
-	   
+	   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 	   public void initView(){
-	       view.getTfNomVoyage().setText(model.getNom());
-	       view.getTfDescVoyage().setText(model.getDescription());
-	       view.getTfNumSiegeVoyage().setText(model.getNumerotationSiege());
-	       view.getSpCapacite().setValue(model.getCapacite());
+	       view.getLieuDeDepart().setText(model.getLieuDepart());
+	       view.getLieuArrivée ().setText(model.getLieuArrive());
+	      view.getDate_heure_depart().setValue(model.getDateHeureDepart());
+	       view.getDate_heure_fin().setValue(model.getDateHeureArrive());
+                           // view.getSiege_disponible().setValue(model.getSiegeReserver());
 	   }
 	   
 	   public void initController(){
-	       view.getBtEnregistrer().addActionListener(e -> enregistrer());
+	       view.getEnregistrer().addActionListener(e -> enregistrer());
 	   }
 	   
 	   private void enregistrer() {
-	       model.setNom(view.getTfNomVoyage().getText());
-	       model.setDescription(view.getTfDescVoyage().getText());
-	       model.setNumerotationSiege(view.getTfNumSiegeVoyage().getText());
-	       model.setCapacite((Integer) view.getSpCapacite().getValue());
+	       model.setLieuDepart(view.getLieuDeDepart().getText());
+	       model.setLieuArrive(view.getLieuArrivée().getText());
+                            // Récupérer la valeur du JSpinner (Date)
+           Date date = (Date) view.getDate_heure_depart().getValue();
+                          // Convertir Date → LocalDateTime
+                      LocalDateTime localDateTime = date.toInstant()
+                      .atZone(ZoneId.systemDefault())
+                      .toLocalDateTime();
+	       // Définir dans le model
+                           model.setDateHeureDepart(localDateTime);
+                            // Récupérer la valeur du JSpinner (Date)
+           Date Date = (Date) view.getDate_heure_fin().getValue();
+           // Convertir Date → LocalDateTime
+                      LocalDateTime LocalDateTime = Date.toInstant()
+                      .atZone(ZoneId.systemDefault())
+                      .toLocalDateTime();
+	       model.setDateHeureArrive(LocalDateTime);
 	       try {
 	           // Contrôle de validation
 	           validationControl(model);
@@ -55,11 +74,11 @@
 	           if(isCreateForm) {
 	               // Création
 	               model.setId(dao.create(model));
-	               JOptionPane.showMessageDialog(null, "Enregistrement du Voyage " + model.getNom() + " effectué avec succès",  "Enregistrement",JOptionPane.INFORMATION_MESSAGE);
+	               JOptionPane.showMessageDialog(null, "Enregistrement du Voyage " + model.getLieuDepart() + " effectué avec succès",  "Enregistrement",JOptionPane.INFORMATION_MESSAGE);
 	           } else {
 	               // Modification
 	               dao.update(model);
-	               JOptionPane.showMessageDialog(null, "Modification du Voyage " + model.getNom() + " effectué avec succès",  "Enregistrement",JOptionPane.INFORMATION_MESSAGE);
+	               JOptionPane.showMessageDialog(null, "Modification du Voyage " + model.getLieuDepart() + " effectué avec succès",  "Enregistrement",JOptionPane.INFORMATION_MESSAGE);
 	           }
 	           view.setVisible(false);
 	           if(Objects.nonNull(onSucess)) {
@@ -74,14 +93,17 @@
 	   }
 	   
 	   private void validationControl(Voyage model) {
-	       if(Objects.isNull(model.getNom()) || model.getNom().isBlank()) {
-	           throw new RuntimeException("Le nom est obligatoire...");
+	       if(Objects.isNull(model.getLieuDepart()) || model.getLieuDepart().isBlank()) {
+	           throw new RuntimeException("Le lieu de depart est obligatoire...");
 	       }
-	       if(Objects.isNull(model.getNumerotationSiege()) || model.getNumerotationSiege().isBlank()) {
-	           throw new RuntimeException("La numérotation du siège est obligatoire...");
+	       if(Objects.isNull(model.getLieuArrive()) || model.getLieuArrive().isBlank()) {
+	           throw new RuntimeException("Le lieu d'arrivé est obligatoire...");
 	       }
-	       if(Objects.isNull(model.getCapacite())) {
-	           throw new RuntimeException("La capacité est obligatoire...");
+	       if(Objects.isNull(model.getDateHeureDepart())) {
+	           throw new RuntimeException("La date de depart est obligatoire...");
+	       }
+                            if(Objects.isNull(model.getDateHeureArrive())) {
+	           throw new RuntimeException("La date de d'arrivée est obligatoire...");
 	       }
 	   }
 
@@ -90,17 +112,5 @@
 	    }
 	    
 	}
-=======
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package mvc_bateau.controller;
 
-/**
- *
- * @author flo
- */
-public class FicheVoyageController {
-    
-}
->>>>>>> 6fba4fbfd676c39800028d8a56fc8d5fd909fe4f
+
