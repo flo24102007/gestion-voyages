@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
+import mvc_bateau.infra.view.ButtonEditor;
+import mvc_bateau.infra.view.ButtonRenderer;
 /**
  *
  * @author HP
@@ -25,41 +27,37 @@ public class VoyageView extends javax.swing.JFrame {
         initComponents();
     customComponents();
     }
-private void customComponents() {
-    try {
-        // Définir la hauteur des lignes
-        tbListeVoyages.setRowHeight(40);
-        
-        // Masquer la colonne ID (colonne 0)
-        /*tbListeVoyages.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tbListeVoyages.getColumnModel().getColumn(0).setMinWidth(0);
-        tbListeVoyages.getColumnModel().getColumn(0).setMaxWidth(0);*/
-        
-        // Dernière colonne = Actions (avec les 2 boutons)
-       // int actionsColumnIndex = tbListeVoyages.getColumnCount() - 1;
-       // tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellRenderer(new ButtonRenderer());
-        //tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setCellEditor(new ButtonEditor(tbListeVoyages));
-        //tbListeVoyages.getColumnModel().getColumn(actionsColumnIndex).setPreferredWidth(200); // Plus large pour 2 boutons
-        
-        // Configurer la police
-        Font font = new Font("Comic Sans MS", Font.BOLD, 16);
-        tbListeVoyages.setFont(font);
-        
-        JTableHeader header = tbListeVoyages.getTableHeader();
-        header.setFont(font);
-        
-        // Centrer la fenêtre
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Erreur configuration table: " + e.getMessage(),
-            "Erreur",
-            javax.swing.JOptionPane.ERROR_MESSAGE);
-        e.printStackTrace();
-    }
+  private void customComponents() {
+    tbListeVoyages.setRowHeight(40);
+
+    // Cacher la colonne ID
+    //tbListeVoyages.getColumn("ID").setPreferredWidth(0);
+    //tbListeVoyages.getColumn("ID").setMinWidth(0);
+    //tbListeVoyages.getColumn("ID").setMaxWidth(0);
+
+    // Colonne Actions : boutons
+    tbListeVoyages.getColumn("Action")
+            .setCellRenderer(new ButtonRenderer());
+
+    tbListeVoyages.getColumn("Action")
+            .setCellEditor(new ButtonEditor(tbListeVoyages));
+
+    tbListeVoyages.getColumn("Action").setPreferredWidth(50);
+
+    // Police
+    Font font = new Font("Comic Sans MS", Font.BOLD, 18);
+    tbListeVoyages.setFont(font);
+
+    // Header
+    JTableHeader header = tbListeVoyages.getTableHeader();
+    header.setFont(font);
+
+    // Fenêtre
+    setLocationRelativeTo(null);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 }
+
+
 
 
 
@@ -85,20 +83,20 @@ private void customComponents() {
 
         tbListeVoyages.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                " ID", "N Voyage", "Lieu départ", "Lieu arrivé", "Date depart", "Date arrivée", "Bateau", "Siège", "Action"
+                " ID", "Lieu départ", "Lieu arrivé", "Date depart", "Date arrivée", "Siège", "Action"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -141,8 +139,8 @@ private void customComponents() {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(Nouveau, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

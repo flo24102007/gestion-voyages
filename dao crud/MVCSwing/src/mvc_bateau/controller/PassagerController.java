@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.List;
 import mvc_bateau.dao.PassagerDAO;
 import mvc_bateau.model.Passager;
+import mvc_bateau.view.FichePassagerView;
 
 
 
@@ -63,7 +64,7 @@ public class PassagerController {
      */
     private void refreshTable(List<Passager> model) {
         SwingUtilities.invokeLater(() -> {
-            DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassager().getModel();
+            DefaultTableModel tableModel = (DefaultTableModel) view.getjTable1().getModel();
             tableModel.setRowCount(0);
             for(Passager b : model) {
                 tableModel.addRow(b.toTableRow());
@@ -74,24 +75,28 @@ public class PassagerController {
     public void initController(){
         // Events Boutons "Actions"
         ActionListener editActionListener = (e) -> {
-            int selectedRow = view.getTbListepassagerx().getSelectedRow();
+            int selectedRow = view.getjTable1().getSelectedRow();
             modifier(selectedRow);
         };
         ActionListener deleteActionListener = (e) -> {
-            int selectedRow = view.getTbListepassagerx().getSelectedRow();
+            int selectedRow = view.getjTable1().getSelectedRow();
             if(JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view, "Voulez-vous vraiment supprimer ce passager ?")) {
-                supprimer(selectedRow);
+                try {
+                    supprimer(selectedRow);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PassagerController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         // Boutons "Actions"
-        ButtonRenderer btnRend = (ButtonRenderer) view.getTbListepassagerx().getColumn("Actions").getCellRenderer();
+        ButtonRenderer btnRend = (ButtonRenderer) view.getjTable1().getColumn("Actions").getCellRenderer();
         btnRend.setEditActionListener(editActionListener);
         btnRend.setDeleteActionListener(deleteActionListener);
-        ButtonEditor btnEditor = (ButtonEditor) view.getTbListepassagerx().getColumn("Actions").getCellEditor();
+        ButtonEditor btnEditor = (ButtonEditor) view.getjTable1().getColumn("Actions").getCellEditor();
         btnEditor.setEditActionListener(editActionListener);
         btnEditor.setDeleteActionListener(deleteActionListener);
        // Bouton Nouveau
-       view.getBtNouveau().addActionListener(e -> nouveau());
+       view.getBtnajouterPassager().addActionListener(e -> nouveau());
     }
     
     /**
@@ -99,10 +104,10 @@ public class PassagerController {
      */
     private void modifier(int tableRow) {
         // Récupération de l'ID
-        Long id = (Long) view.getTbListepassagerx().getValueAt(tableRow, 0);
+        Long id = (Long) view.getjTable1().getValueAt(tableRow, 0);
         // Afficher la vue en modale
-        FichepassagerView editView = new FichepassagerView();
-        FichepassagerController controller = new FichepassagerController(
+        FichePassagerView editView = new FichePassagerView();
+        FichePassagerController controller = new FichePassagerController(
                 dao.selectById(id), 
                 editView, 
                 dao, 
@@ -110,9 +115,9 @@ public class PassagerController {
                 (e)-> {
                     // Au succès de la modification -> actualiser la ligne
                     SwingUtilities.invokeLater(() -> {
-                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassagerx().getModel();
+                        DefaultTableModel tableModel = (DefaultTableModel) view.getjTable1().getModel();
                         int i = 0;
-                        for(Object obj : ((FichepassagerController) e.getSource()).getModel().toTableRow()) {
+                        for(Object obj : ((FichePassagerController) e.getSource()).getModel().toTableRow()) {
                             tableModel.setValueAt(obj, tableRow, i++);
                         }
                     });
@@ -124,10 +129,10 @@ public class PassagerController {
     /**
      * Supprimer une ligne de la table
      */
-    private void supprimer(int tableRow) {
+    private void supprimer(int tableRow) throws SQLException {
         // Récupération de l'ID
-        Long id = (Long) view.getTbListepassagerx().getValueAt(tableRow, 0);
-        String modelTitle = (String) view.getTbListepassagerx().getValueAt(tableRow, 1);
+        Long id = (Long) view.getjTable1().getValueAt(tableRow, 0);
+        String modelTitle = (String) view.getjTable1().getValueAt(tableRow, 1);
         // Suppression DAO
         dao.delete(id);
         // Messages
@@ -136,7 +141,7 @@ public class PassagerController {
                 "Suppression du passager "+ modelTitle + " effectuée avec succès");
         // Retirer la ligne de la table
         SwingUtilities.invokeLater(() -> {
-            ((DefaultTableModel) view.getTbListepassagerx().getModel()).removeRow(tableRow);
+            ((DefaultTableModel) view.getjTable1().getModel()).removeRow(tableRow);
         });
     }
    
@@ -144,17 +149,17 @@ public class PassagerController {
      * Nouvel enregistrement
      */
     private void nouveau() {
-        FichepassagerView newView = new FichepassagerView();
-        FichepassagerController controller = new FichepassagerController(
-                new passager(), 
+        FichePassagerView newView = new FichePassagerView();
+        FichePassagerController controller = new FichePassagerController(
+                new Passager(), 
                 newView, 
                 dao, 
                 Boolean.TRUE, // Création
                 (e)-> {
                     // Au succès de l'enregistrement -> ajout à la table
                     SwingUtilities.invokeLater(() -> {
-                        DefaultTableModel tableModel = (DefaultTableModel) view.getTbListepassagerx().getModel();
-                        tableModel.addRow(((FichepassagerController) e.getSource()).getModel().toTableRow());
+                        DefaultTableModel tableModel = (DefaultTableModel) view.getjTable1().getModel();
+                        tableModel.addRow(((FichePassagerController) e.getSource()).getModel().toTableRow());
                     });
                 });
         controller.initController();

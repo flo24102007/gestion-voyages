@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package mvc_bateau.controller;
 
 import java.awt.event.ActionListener;
@@ -19,54 +15,43 @@ import mvc_bateau.model.Voyage;
 import mvc_bateau.view.FicheVoyageView;
 import mvc_bateau.view.VoyageView;
 
-class VoyageController {
+public class VoyageController {
 
     private final List<Voyage> model;
     private final VoyageView view;
     private final VoyageDAO dao;
 
     public VoyageController(List<Voyage> m, VoyageView v, VoyageDAO d) {
-        model = m;
-        view = v;
-        dao = d;
+        this.model = m;
+        this.view = v;
+        this.dao = d;
         initView();
     }
 
     public void initView() {
-        // Données de vue depuis le model
         refreshTable();
     }
 
-    /**
-     * Actualiser une table
-     */
     public void refreshTable() {
-        refreshTable(model);
-    }
-
-    /**
-     * Actualiser une table à partir d'un objet model
-     */
-    private void refreshTable(List<Voyage> model) {
         SwingUtilities.invokeLater(() -> {
             DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeVoyages().getModel();
             tableModel.setRowCount(0);
-            for (Voyage b : model) {
-                tableModel.addRow(b.toTableRow());
+            for (Voyage v : model) {
+                // toTableRow() appelle maintenant nos getters hybrides formatés
+                tableModel.addRow(v.toTableRow());
             }
         });
     }
 
     public void initController() {
-        // Events Boutons "Actions"
         ActionListener editActionListener = (e) -> {
             int selectedRow = view.getTbListeVoyages().getSelectedRow();
-            modifier(selectedRow);
+            if (selectedRow != -1) modifier(selectedRow);
         };
+
         ActionListener deleteActionListener = (e) -> {
             int selectedRow = view.getTbListeVoyages().getSelectedRow();
-            if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view, "Voulez-vous vraiment supprimer ce Voyage ?")) {
-                // a revoir cette partie
+            if (selectedRow != -1 && JOptionPane.showConfirmDialog(view, "Supprimer ce voyage ?") == JOptionPane.OK_OPTION) {
                 try {
                     supprimer(selectedRow);
                 } catch (SQLException ex) {
@@ -74,37 +59,46 @@ class VoyageController {
                 }
             }
         };
-        // Boutons "Actions"
-        ButtonRenderer btnRend = (ButtonRenderer) view.getTbListeVoyages().getColumn("Actions").getCellRenderer();
-        btnRend.setEditActionListener(editActionListener);
-        btnRend.setDeleteActionListener(deleteActionListener);
-        ButtonEditor btnEditor = (ButtonEditor) view.getTbListeVoyages().getColumn("Actions").getCellEditor();
-        btnEditor.setEditActionListener(editActionListener);
-        btnEditor.setDeleteActionListener(deleteActionListener);
-        // Bouton Nouveau
+
+        setupTableButtons(editActionListener, deleteActionListener);
         view.getNouveau().addActionListener(e -> nouveau());
     }
 
-    /**
-     * Modifier une ligne de la table
-     */
+    private void setupTableButtons(ActionListener edit, ActionListener delete) {
+        // On récupère les colonnes pour injecter les boutons d'action
+        ButtonRenderer btnRend = (ButtonRenderer) view.getTbListeVoyages().getColumn("Action").getCellRenderer();
+        btnRend.setEditActionListener(edit);
+        btnRend.setDeleteActionListener(delete);
+
+        ButtonEditor btnEditor = (ButtonEditor) view.getTbListeVoyages().getColumn("Action").getCellEditor();
+        btnEditor.setEditActionListener(edit);
+        btnEditor.setDeleteActionListener(delete);
+    }
+
     private void modifier(int tableRow) {
-        // Récupération de l'ID
+        // On récupère l'ID caché dans la première colonne (0)
         Long id = (Long) view.getTbListeVoyages().getValueAt(tableRow, 0);
-        // Afficher la vue en modale
+        
+        // IMPORTANT : On recharge l'objet frais depuis le DAO
+        Voyage voyageAmodifier = dao.selectById(id);
+
         FicheVoyageView editView = new FicheVoyageView();
         FicheVoyageController controller = new FicheVoyageController(
-                dao.selectById(id),
+                voyageAmodifier,
                 editView,
                 dao,
-                Boolean.FALSE, // MAJ
+                Boolean.FALSE, 
                 (e) -> {
-                    // Au succès de la modification -> actualiser la ligne
+                    // CALLBACK au succès de la modif
                     SwingUtilities.invokeLater(() -> {
                         DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeVoyages().getModel();
-                        int i = 0;
-                        for (Object obj : ((FicheVoyageController) e.getSource()).getModel().toTableRow()) {
-                            tableModel.setValueAt(obj, tableRow, i++);
+                        // On récupère le modèle mis à jour depuis le FicheVoyageController
+                        Voyage updatedModel = ((FicheVoyageController) e.getSource()).getModel();
+                        Object[] rowData = updatedModel.toTableRow();
+                        
+                        // Mise à jour cellule par cellule pour garder l'heure formatée
+                        for (int i = 0; i < rowData.length; i++) {
+                            tableModel.setValueAt(rowData[i], tableRow, i);
                         }
                     });
                 });
@@ -112,44 +106,30 @@ class VoyageController {
         editView.setVisible(true);
     }
 
-    /**
-     * Supprimer une ligne de la table
-     */
-    private void supprimer(int tableRow) throws SQLException {
-        // Récupération de l'ID
-        Long id = (Long) view.getTbListeVoyages().getValueAt(tableRow, 0);
-        String modelTitle = (String) view.getTbListeVoyages().getValueAt(tableRow, 1);
-        // Suppression DAO
-        dao.delete(id);
-        // Messages
-        JOptionPane.showMessageDialog(
-                view,
-                "Suppression du Voyage " + modelTitle + " effectuée avec succès");
-        // Retirer la ligne de la table
-        SwingUtilities.invokeLater(() -> {
-            ((DefaultTableModel) view.getTbListeVoyages().getModel()).removeRow(tableRow);
-        });
-    }
-
-    /**
-     * Nouvel enregistrement
-     */
     private void nouveau() {
         FicheVoyageView newView = new FicheVoyageView();
         FicheVoyageController controller = new FicheVoyageController(
-                new Voyage(),
+                new Voyage(), // Nouvel objet vide
                 newView,
                 dao,
-                Boolean.TRUE, // Création
+                Boolean.TRUE, 
                 (e) -> {
-                    // Au succès de l'enregistrement -> ajout à la table
+                    // CALLBACK au succès de la création
                     SwingUtilities.invokeLater(() -> {
                         DefaultTableModel tableModel = (DefaultTableModel) view.getTbListeVoyages().getModel();
-                        tableModel.addRow(((FicheVoyageController) e.getSource()).getModel().toTableRow());
+                        Voyage createdModel = ((FicheVoyageController) e.getSource()).getModel();
+                        tableModel.addRow(createdModel.toTableRow());
                     });
                 });
         controller.initController();
         newView.setVisible(true);
     }
 
+    private void supprimer(int tableRow) throws SQLException {
+        Long id = (Long) view.getTbListeVoyages().getValueAt(tableRow, 0);
+        dao.delete(id);
+        SwingUtilities.invokeLater(() -> {
+            ((DefaultTableModel) view.getTbListeVoyages().getModel()).removeRow(tableRow);
+        });
+    }
 }

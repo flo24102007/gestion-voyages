@@ -32,21 +32,21 @@
 	   }
 	   
 	   public void initView(){
-	       view.getTfNomPassager().setText(model.getNom());
-	       view.getTfDescPassager().setText(model.getDescription());
-	       view.getTfNumSiegePassager().setText(model.getNumerotationSiege());
-	       view.getSpCapacite().setValue(model.getCapacite());
+	       view.getNom().setText(model.getNom());
+	       view.getPrenoms().setText(model.getPrenoms());
+	       view.getEmail().setText(model.getEmail());
+	       //view.getSpCapacite().setValue(model.getCapacite());
 	   }
 	   
 	   public void initController(){
-	       view.getBtEnregistrer().addActionListener(e -> enregistrer());
+	       view.getBtnEnregistrer().addActionListener(e -> enregistrer());
 	   }
 	   
 	   private void enregistrer() {
-	       model.setNom(view.getTfNomPassager().getText());
-	       model.setDescription(view.getTfDescPassager().getText());
-	       model.setNumerotationSiege(view.getTfNumSiegePassager().getText());
-	       model.setCapacite((Integer) view.getSpCapacite().getValue());
+	       model.setNom(view.getNom().getText());
+	       model.setPrenoms(view.getPrenoms().getText());
+	       model.setEmail(view.getEmail().getText());
+	       //model.setCapacite((Integer) view.getSpCapacite().getValue());
 	       try {
 	           // Contrôle de validation
 	           validationControl(model);
@@ -76,12 +76,12 @@
 	       if(Objects.isNull(model.getNom()) || model.getNom().isBlank()) {
 	           throw new RuntimeException("Le nom est obligatoire...");
 	       }
-	       if(Objects.isNull(model.getNumerotationSiege()) || model.getNumerotationSiege().isBlank()) {
-	           throw new RuntimeException("La numérotation du siège est obligatoire...");
+	       if(Objects.isNull(model.getEmail()) || model.getEmail().isBlank()) {
+	           throw new RuntimeException("L' email  est obligatoire...");
 	       }
-	       if(Objects.isNull(model.getCapacite())) {
+	       /*if(Objects.isNull(model.getCapacite())) {
 	           throw new RuntimeException("La capacité est obligatoire...");
-	       }
+	       }*/
 	   }
 
 	    public Passager getModel() {

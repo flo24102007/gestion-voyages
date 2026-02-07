@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package 
+package mvc_bateau.view;
+
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author hp
@@ -33,13 +37,9 @@ public class FichePassagerView extends javax.swing.JFrame {
         nom = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
-        telephone = new javax.swing.JLabel();
-        Voyage = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        Nom = new javax.swing.JTextField();
+        prenoms = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         btnEnregistrer = new javax.swing.JButton();
         btnAnnuler = new javax.swing.JButton();
 
@@ -87,26 +87,6 @@ public class FichePassagerView extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(33, 83, 0, 0);
         getContentPane().add(email, gridBagConstraints);
-
-        telephone.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        telephone.setText("Téléphone ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 83, 0, 0);
-        getContentPane().add(telephone, gridBagConstraints);
-
-        Voyage.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        Voyage.setText("Voyage");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 83, 0, 0);
-        getContentPane().add(Voyage, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 1;
@@ -115,7 +95,7 @@ public class FichePassagerView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 139;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(38, 91, 0, 298);
-        getContentPane().add(jTextField1, gridBagConstraints);
+        getContentPane().add(Nom, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 3;
@@ -124,7 +104,7 @@ public class FichePassagerView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 139;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(32, 91, 0, 298);
-        getContentPane().add(jTextField2, gridBagConstraints);
+        getContentPane().add(prenoms, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 5;
@@ -133,25 +113,7 @@ public class FichePassagerView extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 139;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(33, 91, 0, 298);
-        getContentPane().add(jTextField3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 139;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 91, 0, 298);
-        getContentPane().add(jTextField4, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 11;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 139;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 91, 0, 298);
-        getContentPane().add(jTextField5, gridBagConstraints);
+        getContentPane().add(Email, gridBagConstraints);
 
         btnEnregistrer.setBackground(new java.awt.Color(102, 102, 255));
         btnEnregistrer.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -192,42 +154,61 @@ public class FichePassagerView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FichePassagerView().setVisible(true));
+    public JTextField getEmail() {
+        return Email;
     }
 
+    public void setEmail(JTextField Email) {
+        this.Email = Email;
+    }
+
+    public JTextField getNom() {
+        return Nom;
+    }
+
+    public void setNom(JTextField Nom) {
+        this.Nom = Nom;
+    }
+
+    public JButton getBtnAnnuler() {
+        return btnAnnuler;
+    }
+
+    public void setBtnAnnuler(JButton btnAnnuler) {
+        this.btnAnnuler = btnAnnuler;
+    }
+
+    public JButton getBtnEnregistrer() {
+        return btnEnregistrer;
+    }
+
+    public void setBtnEnregistrer(JButton btnEnregistrer) {
+        this.btnEnregistrer = btnEnregistrer;
+    }
+
+    public JTextField getPrenoms() {
+        return prenoms;
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public void setPrenoms(JTextField prenoms) {
+        this.prenoms = prenoms;
+    }
+   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Voyage;
+    private javax.swing.JTextField Email;
+    private javax.swing.JTextField Nom;
     private javax.swing.JButton btnAnnuler;
     private javax.swing.JButton btnEnregistrer;
     private javax.swing.JLabel email;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel nom;
     private javax.swing.JLabel passager;
-    private javax.swing.JLabel telephone;
+    private javax.swing.JTextField prenoms;
     // End of variables declaration//GEN-END:variables
 }
