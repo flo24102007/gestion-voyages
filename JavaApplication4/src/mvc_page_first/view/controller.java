@@ -9,6 +9,9 @@ import mvc_bateau.controller.BateauController;
 import mvc_bateau.dao.BateauDAO;
 import mvc_bateau.view.BateauView;
 import mvc_page_first.view.Page_FirstView;
+import mvc_ticket.model.TicketGenerator;
+import mvc_ticket.view.TicketView;
+import mvc_view.controller.TicketController;
 import mvc_voyage.DAO.VoyageDAO;
 import mvc_voyage.controller.VoyageController;
 import mvc_voyage.view.VoyageView;
@@ -29,6 +32,7 @@ public class controller {
     public void initTestView() {
         view.getjButton3();
         view.getjButton4();
+        view.getjButton2();
         //view.setlocationRelativeTo(null);
         initController();
     }
@@ -36,6 +40,7 @@ public class controller {
     public void initController() {
         view.getjButton4().addActionListener(e -> enregTravel());
         view.getjButton3().addActionListener(e -> enregBoat());
+        view.getjButton2().addActionListener(e -> jButton2ActionPerformed());
     }
 
     private void enregTravel() {
@@ -73,4 +78,24 @@ public class controller {
         view.setVisible(true);
         view.setResizable(false);
     }
+private void jButton2ActionPerformed() {                                         
+    //try {
+        // 1. On crée les composants
+        TicketView formulaire = new TicketView();
+        TicketGenerator service = new TicketGenerator();
+        
+        // 2. On branche le contrôleur (indispensable pour que le bouton du formulaire marche)
+        new TicketController(formulaire, service);
+        
+        // 3. On force l'affichage
+        formulaire.pack(); // Ajuste la taille aux composants
+        formulaire.setLocationRelativeTo(null); // Centre l'écran
+        formulaire.setVisible(true); // Rend visible
+        formulaire.toFront(); // Force le premier plan
+        
+    } //catch (Exception e) {
+       // javax.swing.JOptionPane.showMessageDialog(this, "Erreur lors de l'ouverture : " + e.getMessage());
+        //e.printStackTrace();
+    //}
 }
+ //}

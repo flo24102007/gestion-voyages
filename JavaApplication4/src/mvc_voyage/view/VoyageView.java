@@ -61,6 +61,7 @@ public class VoyageView extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setDefaultCloseOperation(javax.swing.JFrame.HIDE_ON_CLOSE);
     }
+     
 
     private void configurerBoutonsActions() {
         // --- 1. CONFIGURATION COLONNE ACTIONS (Index 9) ---
