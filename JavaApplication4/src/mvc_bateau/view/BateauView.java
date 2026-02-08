@@ -12,6 +12,16 @@ import javax.swing.table.JTableHeader;
 import mvc_bateau.infra.view.ButtonEditor;
 import mvc_bateau.infra.view.ButtonRenderer;
 import mvc_bateau.recherche.Search;
+import mvc_bateau.infra.dao.BaseDBDAO;
+import mvc_bateau.dao.BateauDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import mvc_bateau.infra.jdbc.JdbcHelper;
+
+
 
 /**
  *
@@ -179,7 +189,9 @@ public class BateauView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    protected Connection getConn() {
+        return JdbcHelper.getInstance().getConn();
+    }
     private void btNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNouveauActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btNouveauActionPerformed
@@ -193,7 +205,11 @@ public class BateauView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTSearchMouseEntered
 
     private void jTSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTSearchKeyReleased
-       Search.recherche(tbListeBateaux, jTSearch, jLResultat);
+        try {
+            recherche(jTSearch.getText());
+        } catch (SQLException ex) {
+            System.getLogger(BateauView.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }//GEN-LAST:event_jTSearchKeyReleased
 
     public JButton getBtNouveau() {
@@ -217,4 +233,11 @@ public class BateauView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbListeBateaux;
     // End of variables declaration//GEN-END:variables
+
+    public void recherche(String text) throws SQLException {
+        String query = "SELECT * FROM utilisateurs WHERE nom LIKE ?";
+        PreparedStatement pstmt = getConn().prepareStatement(query);
+        pstmt.setString(1, "%" + text + "%");
+        ResultSet rs = pstmt.executeQuery();
+    }
 }

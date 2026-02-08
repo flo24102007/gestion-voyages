@@ -4,7 +4,7 @@
  */
 package mvc_bateau.recherche;
 
-import mvc_voyage.recherche.*;
+import mvc_bateau.recherche.*;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTable;

@@ -504,7 +504,7 @@ public class BaseDBDAO<T extends BaseModel> implements IBaseDBDAO<T> {
         * Requête de sélection des données de la BD
         * @return
     */
-   public String getDbSelect() {
+   public String getDbSelect( ) {
         return getDbSelect("");
    }
     
@@ -566,5 +566,10 @@ public class BaseDBDAO<T extends BaseModel> implements IBaseDBDAO<T> {
         return tableName;
     }
     
-    
+    public void recherche(String text) throws SQLException {
+        String query = "SELECT * FROM utilisateurs WHERE nom LIKE ?";
+        PreparedStatement pstmt = getConn().prepareStatement(query);
+        pstmt.setString(1, "%" + text + "%");
+        ResultSet rs = pstmt.executeQuery();
+    }
 }

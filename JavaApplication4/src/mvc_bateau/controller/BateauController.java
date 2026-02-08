@@ -155,5 +155,8 @@ public class BateauController {
         newView.setVisible(true);
     }
     
+    // rechercher dans le tableau
+    
+    
 }
 
